@@ -8,7 +8,6 @@ import os # Для работы с файловой системой
 
 # Генерация данных без аномалий и шумов
 def generate_normal_data(base, x):
-    ##n_data = np.array(base, y, x)
     return np.array([int(base) + int(np.random.randint(25)) for i in np.random.rand(x)])
 
 

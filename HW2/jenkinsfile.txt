@@ -12,7 +12,7 @@ pipeline {
         stage('Getting repo') {
             steps {
                 echo 'clone the repo'
-                sh 'https://github.com/Natalia-mswm/HW_MLops.git'
+                sh 'git clone https://github.com/Natalia-mswm/HW_MLops.git'
             }
         }
         stage('installing req') {

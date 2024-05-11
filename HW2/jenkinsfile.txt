@@ -13,7 +13,7 @@ pipeline {
                 cleanWs()
                 // We need to explicitly checkout from SCM here
                 checkout scm
-                echo "Building ${env.HW.2}..."
+                echo "Building ${env.MLops_HW2}..."
             }
         }
         stage('Informing') {

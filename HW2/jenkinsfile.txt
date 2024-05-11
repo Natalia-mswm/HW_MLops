@@ -35,7 +35,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Starting data creation"
-                sh 'python3 var/lib/jenkins/MLops_HW2/HW2/data_creation.py'
+                sh 'python3 var/lib/jenkins/workspace/MLops_HW2/HW2/data_creation.py'
                 echo "starting model_preprocessing"
                 sh 'python3 var/lib/jenkins/MLops_HW2/HW2/model_preprocessing.py'
                 echo 'starting model_preparation'

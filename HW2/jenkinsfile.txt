@@ -2,7 +2,16 @@
 
 pipeline {
     agent any
+    options {
+        skipDefaultCheckout(true)
+    }
     stages {
+        stage('CleanWorkspace') {
+            steps {
+                cleanWs()
+                // Здесь нужно явно выполнить checkout scm, если это необходимо
+                checkout scm
+            }
         stage('Informing') {
             steps {
                 echo '--- Environment info ---'
@@ -20,8 +29,6 @@ pipeline {
         stage('installing req') {
             steps {
                 sh 'python3 -m pip install --upgrade -r ./HW_MLops/HW2/requirements.txt'
-
-
             }
         }
         stage('Build') {
@@ -36,6 +43,11 @@ pipeline {
                 sh 'python3 var/lib/jenkins/MLops_HW2/HW2/model_testing.py'
                 echo "Finished!"
             }
+        }
+    }
+    post {
+        always {
+            cleanWs()
         }
     }
 }

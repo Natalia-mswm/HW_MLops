@@ -2,10 +2,15 @@
 
 pipeline {
     agent any
+    options {
+        skipDefaultCheckout(true)
+    }
     stages {
         stage('CleanWorkspace') {
             steps {
                 cleanWs()
+                checkout scm
+                //echo "Building ${env.MLops_HW2}..."
             }
         }
         stage('Informing') {

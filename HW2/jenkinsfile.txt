@@ -2,20 +2,7 @@
 
 pipeline {
     agent any
-    options {
-        // This is required if you want to clean before build
-        skipDefaultCheckout(true)
-    }
     stages {
-        stage('preparation') {
-            steps {
-                // Clean before build
-                cleanWs()
-                // We need to explicitly checkout from SCM here
-                checkout scm
-                echo "Building ${env.MLops_HW2}..."
-            }
-        }
         stage('Informing') {
             steps {
                 echo '--- Environment info ---'
@@ -37,15 +24,14 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'cd ./HW_MLops/HW2/'
                 echo "Starting data creation"
-                sh 'python3 data_creation.py'
+                sh 'python3 var/lib/jenkins/MLops_HW2/HW2/data_creation.py'
                 echo "starting model_preprocessing"
-                sh 'python3 model_preprocessing.py'
+                sh 'python3 var/lib/jenkins/MLops_HW2/HW2/model_preprocessing.py'
                 echo 'starting model_preparation'
-                sh 'python3 model_preparation.py'
+                sh 'python3 var/lib/jenkins/MLops_HW2/HW2/model_preparation.py'
                 echo 'starting model_testing'
-                sh 'python3 model_testing.py'
+                sh 'python3 var/lib/jenkins/MLops_HW2/HW2/model_testing.py'
                 echo "Finished!"
             }
         }

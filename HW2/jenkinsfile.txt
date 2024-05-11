@@ -7,9 +7,6 @@ pipeline {
             steps {
                 echo '--- Environment info ---'
                 sh 'python3 --version'
-                sh 'python3 -m pip --version'
-                sh 'Working directory:'
-                sh 'pwd'
             }
         }
         stage('Getting repo') {

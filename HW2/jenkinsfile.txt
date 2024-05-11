@@ -17,7 +17,7 @@ pipeline {
         }
         stage('installing req') {
             steps {
-                sh 'python3 -m pip install -r ./HW_MLops/HW2/requirements.txt'
+                sh 'python3 -m pip install --upgrade -r ./HW_MLops/HW2/requirements.txt'
 
 
             }

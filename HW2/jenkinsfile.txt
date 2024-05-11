@@ -17,7 +17,7 @@ pipeline {
             steps {
                 echo '--- Environment info ---'
                 sh 'python3 --version'
-                cleamWs()
+                cleanWs()
                 echo 'Working directory was cleaned successfuly'
             }
         }

@@ -1,0 +1,45 @@
+﻿#!/usr/bin/env groovy
+
+pipeline {
+    agent any
+    options {
+        skipDefaultCheckout(true)
+    }
+    stages {
+        stage('CleanWorkspace') {
+            steps {
+                cleanWs()
+                checkout scm
+                //echo "Building ${env.PI_final_project}..."
+            }
+        }
+        stage('Informing') {
+            steps {
+                echo '--- Environment info ---'
+                sh 'python3 --version'
+                cleanWs()
+                echo 'Working directory was cleaned successfuly'
+            }
+        }
+        stage('Getting repo') {
+            steps {
+                echo 'clone the repo'
+                sh 'git clone https://github.com/ilonautkevich/PI_final_project.git'
+            }
+        }
+        stage('installing req') {
+            steps {
+                sh 'python3 -m pip install --upgrade -r ./PI_final_project/requirements.txt'
+    		      }
+        }
+        stage('Build') {
+            steps {
+                echo "starting testing"
+                sh 'python3 PI_final_project/test_main.py'
+                echo 'launch the application'
+                sh 'python3 PI_final_project/main.py'
+                echo "Finished!"
+            }
+        }
+    }
+}
